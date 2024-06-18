@@ -28,7 +28,7 @@ class FCMP(expWidth: Int, precision: Int, ctrlGen: Data = new EmptyFPUCtrl)
 
   val result = Mux(fflags.head(1).asBool,
     0.U(32.W),
-    MuxLookup(Cat(1.U(3.W), op), 0.U(32.W), Seq(
+    MuxLookup(Cat(1.U(3.W), op), 0.U(32.W))(Seq(
       FN_FEQ -> eq.asUInt,
       FN_FNE -> (!eq).asUInt,
       FN_FLE -> le.asUInt,

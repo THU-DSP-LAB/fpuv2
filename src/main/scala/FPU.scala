@@ -30,7 +30,7 @@ class ScalarFPU(expWidth: Int, precision: Int, ctrlGen: Data = EmptyFPUCtrl()) e
     module.io.in.bits.ctrl.foreach( _ := Mux(idx.U===fu, io.in.bits.ctrl.get, 0.U.asTypeOf(io.in.bits.ctrl.get)) )
     module.io.in.valid := idx.U===fu && io.in.valid
   }
-  io.in.ready := MuxLookup(fu, false.B,
+  io.in.ready := MuxLookup(fu, false.B)(
     subModules.zipWithIndex.map{ case (module, idx) =>
       idx.U -> module.io.in.ready
     }

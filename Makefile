@@ -2,10 +2,10 @@ init:
 	git submodule update --init
 
 compile:
-	mill -i -j 0 __.compile
+	./mill -i -j 0 __.compile
 
 clean:
 	git clean -fd
 
 idea:
-	mill -i mill.scalalib.GenIdea/idea
+	./mill -i mill.idea.GenIdea/idea
