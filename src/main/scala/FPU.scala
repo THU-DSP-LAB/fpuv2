@@ -1,7 +1,7 @@
 package FPUv2
 
 import FPUv2.utils._
-import chisel3.experimental.dataview.BundleUpcastable
+import chisel3.experimental.dataview._
 import chisel3.{VecInit, _}
 import chisel3.util._
 

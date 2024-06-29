@@ -8,7 +8,6 @@ import chisel3.experimental.BundleLiterals._
 import chisel3.experimental.VecLiterals.AddVecLiteralConstructor
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
-import FPUv2.utils.TestFPUCtrl
 
 object Parameters{
   val depthWarp: Int = 4

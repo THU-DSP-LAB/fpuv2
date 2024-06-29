@@ -1,6 +1,11 @@
 .bsp
 .idea
+.bloop
+.metals
+.vscode
+.idea_modules
 out
 project
 target
 test_run_dir
+build

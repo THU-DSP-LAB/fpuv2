@@ -14,7 +14,7 @@ class TCAddPipe(expWidth: Int, precision: Int, ctrlGen: Data = EmptyFPUCtrl())
   override def latency = 2
   val len = expWidth + precision
   val s1 = Module(new FCMA_ADD_s1(expWidth, precision, precision))
-  val s2 = Module(new FCMA_ADD_s2(expWidth, precision))
+  val s2 = Module(new FCMA_ADD_s2(expWidth, precision, precision))
 
   s1.io.a := S1Reg(io.in.bits.a)
   s1.io.b := S1Reg(io.in.bits.b)

@@ -78,7 +78,7 @@ class FADDPipe(expWidth: Int, precision: Int, ctrlGen: Data = EmptyFPUCtrl())
   val fromMul = IO(Input(new MulToAddIO(expWidth, precision, ctrlGen)))
 
   val s1 = Module(new FCMA_ADD_s1(expWidth, 2 * precision, precision))
-  val s2 = Module(new FCMA_ADD_s2(expWidth, precision))
+  val s2 = Module(new FCMA_ADD_s2(expWidth, 2 * precision, precision))
 
   val isFMA = FPUOps.isFMA(io.in.bits.op)
   //val s1_isFMA = S1Reg(isFMA)
