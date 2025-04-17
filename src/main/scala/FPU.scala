@@ -17,7 +17,8 @@ class ScalarFPU(expWidth: Int, precision: Int, ctrlGen: Data = EmptyFPUCtrl()) e
     Module(new FCMP(expWidth, precision, ctrlGen)),
     Module(new FPMV(expWidth, precision, ctrlGen)),
     Module(new FPToInt(ctrlGen)),
-    Module(new IntToFP(ctrlGen))
+    Module(new IntToFP(ctrlGen)),
+    Module(new FPToFP_cvt(ctrlGen))
   )
 
   val fu = io.in.bits.op.head(3)
@@ -36,7 +37,7 @@ class ScalarFPU(expWidth: Int, precision: Int, ctrlGen: Data = EmptyFPUCtrl()) e
     }
   )
 
-  val outArbiter = Module(new Arbiter(new FPUOutput(64, ctrlGen), 5))
+  val outArbiter = Module(new Arbiter(new FPUOutput(64, ctrlGen), 6))
   subModules.zipWithIndex.foreach{ case (module, idx) =>
     outArbiter.io.in(idx) <> module.io.out
   }
