@@ -76,7 +76,23 @@ abstract class FPUSubModule(len: Int, ctrlGen: Data = EmptyFPUCtrl()) extends Mo
     Cat(~(x.head(1)), x.tail(1))
   }
 }
+abstract class DPSubModule(inlen: Int,outlen: Int, ctrlGen: Data = EmptyFPUCtrl()) extends Module
+  with HasUIntToSIntHelper {
+  val io = IO(new Bundle {
+    val in = Flipped(DecoupledIO(Input(new FPUInput(inlen, ctrlGen))))
+    val out = DecoupledIO(Output(new FPUOutput(outlen, ctrlGen)))
+  })
+
+  def invertSign(x: UInt): UInt = {
+    Cat(~(x.head(1)), x.tail(1))
+  }
+}
 
 abstract class FPUPipelineModule(len: Int, ctrlGen: Data = EmptyFPUCtrl())
   extends FPUSubModule(len, ctrlGen)
     with HasPipelineReg
+
+
+abstract class DPPipelineModule(inlen: Int,outlen: Int, ctrlGen: Data = EmptyFPUCtrl())
+  extends DPSubModule(inlen: Int,outlen: Int, ctrlGen)
+    with HasPipelineReg2
